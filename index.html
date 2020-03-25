@@ -250,6 +250,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yangtang1996.github.io/2020/03/25/GithubBlog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Young">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/25/GithubBlog/" itemprop="url">GithubBlog</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-25T16:31:41+08:00">
+                2020-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本文记录如何通过Github的repo创建静态博客</p>
+<h2 id="Github中创建repository"><a href="#Github中创建repository" class="headerlink" title="Github中创建repository"></a>Github中创建repository</h2><ul>
+<li>repo的name：<code>github用户名+github.io</code>，例如我的repoName: <code>yangtang1996.github.io</code></li>
+<li>勾选 <code>Initialize this repository with a README</code></li>
+</ul>
+<h2 id="安装一些软件"><a href="#安装一些软件" class="headerlink" title="安装一些软件"></a>安装一些软件</h2><ul>
+<li>git</li>
+<li>node.js</li>
+</ul>
+<p>软件正常安装，一路按照默认设置即可，完成后通过cmd或者powershell验证</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+<p>正确显示版本号就OK了</p>
+<h2 id="配置Git的SSH"><a href="#配置Git的SSH" class="headerlink" title="配置Git的SSH"></a>配置Git的SSH</h2><ul>
+<li>配置Github账号</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name "yourname"</span><br><span class="line">git config --global user.email "youremail"</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>获取SSH密匙</p>
+<p>通过下面代码判断本机是否已有密匙</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>第一次配置密匙</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C "xxxx@xxx.com"</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>读取已有密匙</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<p>将读取的密匙 <code>ssh-rsa  ......   .com</code> 复制并打开Github</p>
+<p>Account - &gt;  setting  - &gt; SSH and GPG keys -&gt; NEW</p>
+<p>Title 任意即可</p>
+<p>把刚才的密匙<code>ssh-rsa  ......   .com</code> 添加到SSH key中</p>
+<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>使用npm下载主题到默认的下载路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<p>在电脑上需要的地方新建Blog文件夹</p>
+<p>进入该文件夹，初始化hexo到该Blog文件夹</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<h2 id="上传hexo到Github"><a href="#上传hexo到Github" class="headerlink" title="上传hexo到Github"></a>上传hexo到Github</h2><p>在Blog文件夹内</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>也可以写一个dat脚本实现</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yangtang1996.github.io/2020/03/24/%E6%8B%89%E5%8B%BE%E7%BD%91%E5%B2%97%E4%BD%8D%E7%88%AC%E5%8F%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1472,7 +1640,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
